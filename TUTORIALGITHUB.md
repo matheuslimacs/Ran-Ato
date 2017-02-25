@@ -5,15 +5,15 @@ Metodologia de Projetos, 2017.1
 
 # TUTORIAL DE COMO USAR O GITHUB:
 
-1 - Baixe um GUI: https://www.sourcetreeapp.com/
-2 - Instale normalmente usando sua conta do GitHub (nenhuma outra)
-3 - Com o programa aberto, escolha ao opção Clone Repository na parte superior esquerda da tela.
-4 - Abra o GitHub no navegador, escolha o projeto Ran-Ato e clique no botão "Clone/Download"
-5 - Copie o link na caixinha de URL que o programa SourceTree vai lhe pedir. Automaticamente, uma pasta do Ran-Ato será criada
+- Baixe um GUI: https://www.sourcetreeapp.com/
+- Instale normalmente usando sua conta do GitHub (nenhuma outra)
+- Com o programa aberto, escolha ao opção Clone Repository na parte superior esquerda da tela.
+- Abra o GitHub no navegador, escolha o projeto Ran-Ato e clique no botão "Clone/Download"
+- Copie o link na caixinha de URL que o programa SourceTree vai lhe pedir. Automaticamente, uma pasta do Ran-Ato será criada
 na pasta de Documentos do seu PC.
-6 - [PARTE IMPORTANTE]: Clique no ícone de "Pull" para "sincronizar" os arquivos do repositório do projeto para seu computador.
-7 - Após isso, verifique se os arquivos realmente foram baixados indo na pasta criada pelo SourceTree no passo 5.
-8 - Pronto, GitHub configurado.
+- [PARTE IMPORTANTE]: Clique no ícone de "Pull" para "sincronizar" os arquivos do repositório do projeto para seu computador.
+- Após isso, verifique se os arquivos realmente foram baixados indo na pasta criada pelo SourceTree no passo 5.
+- Pronto, GitHub configurado.
 
 # Notas importantes:
 
