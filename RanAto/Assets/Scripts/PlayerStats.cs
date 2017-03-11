@@ -29,12 +29,4 @@ public class PlayerStats : MonoBehaviour
             Health -= amnt;
         }
     }
-
-    public Player Samurai = new Player(150, 8f, 5);
-
-    private void Update()
-    {
-        Samurai.TakeDamage(10);
-        Debug.Log(Samurai.Health);
-    }
 }

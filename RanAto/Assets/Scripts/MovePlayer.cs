@@ -9,8 +9,8 @@ public class MovePlayer : MonoBehaviour
     private float moveSpeed = 7f;
     private float jumpForce = 8f;
     private bool bNoChao;
-    public LayerMask groundLayer; //mostra quem é o chão nas layers
-    private Rigidbody2D myRb;   // adiciona ao mRB os componentes de um rigidbody
+    public LayerMask groundLayer; // mostra quem é o chão nas layers
+    private Rigidbody2D myRb; // adiciona ao myRb os componentes de um rigidbody
     private Collider2D myCollider;
     private Animator anim;
 
@@ -24,7 +24,6 @@ public class MovePlayer : MonoBehaviour
 	void FixedUpdate ()
     {
         transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
-
         bNoChao = Physics2D.IsTouchingLayers(myCollider, groundLayer);
 	}
 
@@ -36,7 +35,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    public void OnTouchDown()
+    public void Jump()
     {
         if (bNoChao)
         {
@@ -44,20 +43,5 @@ public class MovePlayer : MonoBehaviour
             Debug.Log("Pula!");
             myRb.velocity = new Vector2(myRb.velocity.x, jumpForce);
         }
-    }
-
-    public void OnTouchUp()
-    {
-
-    }
-
-    public void OnTouchStay()
-    {
-
-    }
-
-    public void OnTouchExit()
-    {
-
     }
 }
