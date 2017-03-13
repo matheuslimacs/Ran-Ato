@@ -13,7 +13,6 @@ public class Ninja : MonoBehaviour {
         player = GameObject.Find("Player");
         anim = player.GetComponent<Animator>();
         anim.runtimeAnimatorController = controller;
-        anim.SetBool("isNinja", true);
         Debug.Log("It's me, ninja!");
     }
 }

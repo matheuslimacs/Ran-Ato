@@ -13,7 +13,6 @@ public class Samurai : MonoBehaviour {
         player = GameObject.Find("Player");
         anim = player.GetComponent<Animator>();
         anim.runtimeAnimatorController = controller;
-        anim.SetBool("isSamurai", true);
         Debug.Log("It's me, samurai!");
     }
 }
