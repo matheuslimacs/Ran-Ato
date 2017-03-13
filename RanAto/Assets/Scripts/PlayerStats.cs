@@ -17,13 +17,6 @@ public class PlayerStats : MonoBehaviour
             Ammo = ammo;
         }
 
-        public Player()
-        {
-            Health = 100;
-            JumpPower = 7f;
-            Ammo = 2;
-        }
-
         public void TakeDamage(int amnt)
         {
             Health -= amnt;

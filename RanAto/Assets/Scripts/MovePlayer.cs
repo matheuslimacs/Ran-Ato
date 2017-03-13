@@ -7,18 +7,27 @@ public class MovePlayer : MonoBehaviour
     // Esse script irá controlar os inputs do jogador, animações do personagem e afins
 
     private float moveSpeed = 7f;
-    private float jumpForce = 8f;
+    private float jumpForce;
     private bool bNoChao;
     public LayerMask groundLayer; // mostra quem é o chão nas layers
     private Rigidbody2D myRb; // adiciona ao myRb os componentes de um rigidbody
     private Collider2D myCollider;
     private Animator anim;
 
-	void Start ()
+    private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
+
+    private void Awake()
+    {
+        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>(); // Pegando o script...
+    }
+
+    void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();	
+        anim = GetComponent<Animator>();
+
+        jumpForce = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
 	}
 	
 	void FixedUpdate ()
