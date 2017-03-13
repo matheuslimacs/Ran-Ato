@@ -1,7 +1,7 @@
 # Ran-Ato
 Metodologia de Projetos, 2017.1
 
-# Versão atual: 1.1.0.0 (INÍCIO)
+# Resumo de alterações:
 
 - Foram feitas DIVERSAS alterações nos seguintes scripts:
   - GameManager (alteração no modo de gerenciar o jogo)
