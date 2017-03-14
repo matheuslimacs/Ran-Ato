@@ -21,33 +21,45 @@ public class GameManager : MonoBehaviour {
         switch (character)
         {
             case 1: // Mulher
-                player.GetComponent<Woman>().enabled = true;
-                player.GetComponent<Samurai>().enabled = false;
-                player.GetComponent<Ninja>().enabled = false;
-
-                playerStats.Health = 115;
-                playerStats.JumpPower = 5f;
-                playerStats.Ammo = 0;
+                EnableWomanScript();
+                DefinePlayer(115, 5f, 0);
                 break;
             case 2: // Samurai
-                player.GetComponent<Woman>().enabled = false;
-                player.GetComponent<Samurai>().enabled = true;
-                player.GetComponent<Ninja>().enabled = false;
-
-                playerStats.Health = 150;
-                playerStats.JumpPower = 8f;
-                playerStats.Ammo = 3;
+                EnableSamuraiScript();
+                DefinePlayer(150, 8f, 3);
                 break;
             case 3: // Ninja
-                player.GetComponent<Woman>().enabled = false;
-                player.GetComponent<Samurai>().enabled = false;
-                player.GetComponent<Ninja>().enabled = true;
-
-                playerStats.Health = 130;
-                playerStats.JumpPower = 12f;
-                playerStats.Ammo = 5;
+                EnableNinjaScript();
+                DefinePlayer(130, 12f, 5);
                 break;
         }
     }
 
+    void DefinePlayer(int hp, float jmpPower, int am)
+    {
+        playerStats.Health = hp;
+        playerStats.JumpPower = jmpPower;
+        playerStats.Ammo = am;
+    }
+
+    void EnableWomanScript()
+    {
+        player.GetComponent<Woman>().enabled = true;
+        player.GetComponent<Samurai>().enabled = false;
+        player.GetComponent<Ninja>().enabled = false;
+    }
+
+    void EnableSamuraiScript()
+    {
+        player.GetComponent<Woman>().enabled = false;
+        player.GetComponent<Samurai>().enabled = true;
+        player.GetComponent<Ninja>().enabled = false;
+    }
+
+    void EnableNinjaScript()
+    {
+        player.GetComponent<Woman>().enabled = false;
+        player.GetComponent<Samurai>().enabled = false;
+        player.GetComponent<Ninja>().enabled = true;
+    }
 }
