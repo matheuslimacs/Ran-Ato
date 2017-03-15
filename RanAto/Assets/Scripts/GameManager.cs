@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
-    public PlayerStats.Player playerStats = new PlayerStats.Player(100, 8f, 3);
+    [HideInInspector]
+    public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
 
     private GameObject player;
     // A variável acima armazena o objeto do jogador

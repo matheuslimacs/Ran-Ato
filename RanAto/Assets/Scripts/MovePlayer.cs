@@ -16,17 +16,13 @@ public class MovePlayer : MonoBehaviour
 
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
 
-    private void Awake()
-    {
-        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>(); // Pegando o script...
-    }
-
     // TODO: Ver por que existe um atraso no Start() desse código...
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();       
+        anim = GetComponent<Animator>();
+        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();       
 	}
 	
 	void FixedUpdate ()
