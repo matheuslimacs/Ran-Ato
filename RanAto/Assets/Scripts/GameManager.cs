@@ -15,10 +15,7 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         player = GameObject.Find("Player");
-    }
 
-    private void Start()
-    {
         switch (character)
         {
             case 1: // Mulher

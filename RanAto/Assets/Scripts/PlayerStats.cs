@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerStats
+﻿public class PlayerStats
 {
     public int Health;
     public float JumpPower;

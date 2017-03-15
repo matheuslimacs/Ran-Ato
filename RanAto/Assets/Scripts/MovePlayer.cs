@@ -16,20 +16,19 @@ public class MovePlayer : MonoBehaviour
 
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
 
-    // TODO: Ver por que existe um atraso no Start() desse código...
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
-        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();       
-	}
+        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();
+        jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+    }
 	
 	void FixedUpdate ()
     {
         transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
         bNoChao = Physics2D.IsTouchingLayers(myCollider, groundLayer);
-        jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
