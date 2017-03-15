@@ -27,3 +27,4 @@ O que iremos fazer quase 100% do tempo é fazer o 'push' de arquivos para a sua 
 Quando tudo tiver OK, iremos atualizar e sincronizar com a versão 'master', e continuar mandando modificações para sua própria branch em seguida.
 ATENÇÃO: NUNCA enviar arquivos para a branch 'master' sem antes verificar se está tudo OK. Corremos o risco de perder modificações
 importantes da branch estável.
+Linha de teste
