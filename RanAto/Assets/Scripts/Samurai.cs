@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Samurai : PlayerStats {
+public class Samurai : MonoBehaviour {
 
-    private PlayerStats myStats;
+    GameObject player;
+    Animator anim;
+    public RuntimeAnimatorController controller;
 
-    private void Awake()
+    private void Start()
     {
-        myStats = GameObject.Find("_GM").GetComponent<PlayerStats>();
+        player = GameObject.Find("Player");
+        anim = player.GetComponent<Animator>();
+        anim.runtimeAnimatorController = controller;
+        Debug.Log("It's me, samurai!");
     }
-
-    private void Update()
-    {
-
-    }
-
 }
