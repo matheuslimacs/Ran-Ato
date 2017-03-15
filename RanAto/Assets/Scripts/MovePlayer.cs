@@ -21,20 +21,20 @@ public class MovePlayer : MonoBehaviour
         myPlayer = GameObject.Find("_GM").GetComponent<GameManager>(); // Pegando o script...
     }
 
+    // TODO: Ver por que existe um atraso no Start() desse código...
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
-        anim = GetComponent<Animator>();
-
-        jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+        anim = GetComponent<Animator>();       
 	}
 	
 	void FixedUpdate ()
     {
         transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
         bNoChao = Physics2D.IsTouchingLayers(myCollider, groundLayer);
-	}
+        jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,7 +49,7 @@ public class MovePlayer : MonoBehaviour
         if (bNoChao)
         {
             anim.SetBool("Jump", true);
-            Debug.Log("Pula!");
+            Debug.Log("Pulando com força de " + jumpSpeed + "f!");
             myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed);
         }
     }

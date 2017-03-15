@@ -23,14 +23,17 @@ public class GameManager : MonoBehaviour {
             case 1: // Mulher
                 EnableWomanScript();
                 DefinePlayer(115, 5f, 0);
+                Debug.Log("Personagem criado: Mulher - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
             case 2: // Samurai
                 EnableSamuraiScript();
                 DefinePlayer(150, 8f, 3);
+                Debug.Log("Personagem criado: Samurai - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
             case 3: // Ninja
                 EnableNinjaScript();
                 DefinePlayer(130, 12f, 5);
+                Debug.Log("Personagem criado: Ninja - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
         }
     }
