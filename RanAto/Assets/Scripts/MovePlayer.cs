@@ -16,7 +16,6 @@ public class MovePlayer : MonoBehaviour
 
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
 
-    // TODO: Ver por que existe um atraso no Start() desse código...
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
