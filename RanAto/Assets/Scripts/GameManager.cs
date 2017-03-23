@@ -7,10 +7,14 @@ public class GameManager : MonoBehaviour {
     static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
+    public bool bGameStarted = false;
 
     private GameObject player;
-    // A variável acima armazena o objeto do jogador
-    // Dessa forma, poderemos organizar qual script ativar (mulher, samurai ou ninja) a depender da escolha do jogador.
+    public GameObject doorL;
+    public GameObject doorR;
+
+    public Animation doorLOut;
+    public Animation doorROut;
 
     private void Awake()
     {
@@ -19,6 +23,8 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
+        GameStart();
+
         switch (character)
         {
             case 1: // Mulher
@@ -37,6 +43,27 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("Personagem criado: Ninja - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
         }
+    }
+
+    // Apenas 'travando' a tela na orientação Retrato.
+    private void Update()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
+    private void GameStart()
+    {
+        StartCoroutine(DoorSlideOut());
+    }
+
+    private IEnumerator DoorSlideOut()
+    {
+        doorLOut.Play();
+        doorROut.Play();
+        yield return new WaitForSeconds(0.5f);
+        bGameStarted = true;
+        doorL.gameObject.SetActive(false);
+        doorR.gameObject.SetActive(false);
     }
 
     void DefinePlayer(int hp, float jmpPower, int am)

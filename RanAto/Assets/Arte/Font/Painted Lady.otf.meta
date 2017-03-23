@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4091c687725513246a875dacc9e95608
+timeCreated: 1490236888
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Painted Lady
+  fontNames:
+  - Painted Lady
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

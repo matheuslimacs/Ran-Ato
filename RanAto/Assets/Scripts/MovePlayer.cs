@@ -15,19 +15,23 @@ public class MovePlayer : MonoBehaviour
     private Animator anim;
 
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
+    private Camera main;
 
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
-        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();       
+        myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();
+        main = Camera.main;
 	}
 	
 	void FixedUpdate ()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
-        bNoChao = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+        if (myPlayer.bGameStarted)
+        {
+            MoveForward();
+        }
         jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
     }
 
@@ -47,5 +51,12 @@ public class MovePlayer : MonoBehaviour
             Debug.Log("Pulando com força de " + jumpSpeed + "f!");
             myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed);
         }
+    }
+
+    private void MoveForward()
+    {
+        transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
+        bNoChao = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+        main.transform.Translate(Vector3.left * Time.deltaTime * moveSpeed);
     }
 }
