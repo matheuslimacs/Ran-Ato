@@ -21,7 +21,7 @@ public class SalvarPontuacao : MonoBehaviour {
         if (distancia >= maiorDistancia)
         {
             maiorDistancia = distancia;
-            PlayerPrefs.SetInt("Distancia Maior", maiorDistancia);
+            PlayerPrefs.SetInt("mDistancia", maiorDistancia);
         }
 	}
 
