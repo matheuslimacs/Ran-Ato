@@ -17,7 +17,7 @@ na pasta de Documentos do seu PC.
 
 # Notas importantes:
 
-- Commit: serve para enviar pedidos de atualização do projeto ao líder (Matheus).
+- Commit: serve para enviar 'registros de atualização' do seu projeto em seu repositório local (funciona como save states).
 - Push: serve para enviar os arquivos locais para o repositório remoto (web).
 - Pull: serve para sincronizar os arquivos remotos (web) com os locais (seu PC).
 - Branch: é um "galho". Basicamente serve para diferir a versão original (estável) do projeto por uma versão backup.
