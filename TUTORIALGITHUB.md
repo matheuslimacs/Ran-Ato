@@ -17,14 +17,13 @@ na pasta de Documentos do seu PC.
 
 # Notas importantes:
 
-- Commit: serve para enviar pedidos de atualização do projeto ao líder (Matheus).
+- Commit: serve para enviar 'registros de atualização' do seu projeto em seu repositório local (funciona como save states).
 - Push: serve para enviar os arquivos locais para o repositório remoto (web).
 - Pull: serve para sincronizar os arquivos remotos (web) com os locais (seu PC).
 - Branch: é um "galho". Basicamente serve para diferir a versão original (estável) do projeto por uma versão backup.
 Por exemplo, a branch 'master' contém o projeto do jogo final.
-Já a branch 'Matheus' possui o mesmo projeto, mas com MINHAS modificações que ainda não foram para a versão final.
-O que iremos fazer quase 100% do tempo é fazer o 'push' de arquivos para a sua respectiva branch.
+Já a branch 'develop' possui o mesmo projeto, mas com modificações que ainda não foram para a versão final.
+O que iremos fazer quase 100% do tempo é fazer o 'push' de arquivos para a branch develop.
 Quando tudo tiver OK, iremos atualizar e sincronizar com a versão 'master', e continuar mandando modificações para sua própria branch em seguida.
 ATENÇÃO: NUNCA enviar arquivos para a branch 'master' sem antes verificar se está tudo OK. Corremos o risco de perder modificações
 importantes da branch estável.
-Linha de teste
