@@ -5,7 +5,6 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     // Esse script irá controlar os inputs do jogador, animações do personagem e afins
-
     private float moveSpeed = 7f;
     private float jumpSpeed;
     private bool bNoChao;

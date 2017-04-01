@@ -2,12 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorDados : ScriptableObject {
+
+/*
+ * Classe Criada para gerenciar os dados que iram continuar no jogo apos fechar.
+ * Total de moedas e maior distancia serão carregados quando o jogo começar e serão salvos quando a fase terminar.
+ * Esperando limite das fases para chamar as funções na hora certa. 
+ */
+public class ControladorDados : MonoBehaviour {
+
+	//Instancia criada para uso.
+	public static ControladorDados controlador;
 
 	//Variaveis contendo os dados.
-	private  int tMoedas;
-	private  int distancia;
-	private  int mDistancia;
+	private static int tMoedas;
+	private static int distancia;
+	private static int mDistancia;
+
+	//Será criado o controlador no inicio do jogo.
+	void Aweke(){
+
+		if (!(controlador is ControladorDados) || controlador == null) {
+			controlador = this;
+		}
+	}
 
 	//Propriedade da distancia.
 	public int Distancia{
