@@ -71,12 +71,13 @@ public class Swipe : MonoBehaviour {
             if (distance.y > 0)
             {
                 Debug.Log("P/ cima");
-                player.GetComponent<MovePlayer>().Jump();
             }
 
             if (distance.y < 0)
             {
                 Debug.Log("P/ baixo");
+                player.GetComponent<MovePlayer>().isGoingDown = true;
+                player.GetComponent<MovePlayer>().GoDown();
             }
         }
     }
