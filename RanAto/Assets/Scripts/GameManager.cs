@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+    static int character = 1; // 1 - Mulher, 2 - Samurai, 3 - Ninja
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
     public bool bGameStarted = false;
@@ -29,12 +29,12 @@ public class GameManager : MonoBehaviour {
         {
             case 1: // Mulher
                 EnableWomanScript();
-                DefinePlayer(115, 5f, 0);
+                DefinePlayer(115, 8f, 0);
                 Debug.Log("Personagem criado: Mulher - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
             case 2: // Samurai
                 EnableSamuraiScript();
-                DefinePlayer(150, 8f, 3);
+                DefinePlayer(150, 10f, 3);
                 Debug.Log("Personagem criado: Samurai - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
                 break;
             case 3: // Ninja

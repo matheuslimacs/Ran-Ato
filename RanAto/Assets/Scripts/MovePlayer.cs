@@ -46,10 +46,10 @@ public class MovePlayer : MonoBehaviour
             isGoingDown = false;
         }
 
-        Touch touch = Input.GetTouch(0);
-
-        if (Input.touchCount > 0 && touch.phase == TouchPhase.Ended)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
+            Touch touch = Input.GetTouch(0);
+
             if (touch.tapCount == 1)
             {
                 Jump();
