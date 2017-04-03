@@ -32,12 +32,14 @@ public class MovePlayer : MonoBehaviour
 	
 	void FixedUpdate ()
     {
+        // Aguardando as cortinas abrirem.
         if (myPlayer.bGameStarted)
         {
             MoveForward();
         }
 
-        jumpSpeed = myPlayer.playerStats.JumpPower; // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+        // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+        jumpSpeed = myPlayer.playerStats.JumpPower; 
 
         if (bNoChao)
         {
@@ -54,6 +56,12 @@ public class MovePlayer : MonoBehaviour
             {
                 Jump();
             }
+        }
+
+        // Debugging
+        if (Input.GetMouseButtonDown(0))
+        {
+            Jump();
         }
     }
 
