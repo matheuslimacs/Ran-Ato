@@ -15,7 +15,7 @@ public class GroundSpawning : MonoBehaviour {
     public float distanceBetweenMin;
     public float distanceBetweenMax;
 
-    public ObjectPooler objPool;
+    public GroundPooler objPool;
 
     private void Start()
     {

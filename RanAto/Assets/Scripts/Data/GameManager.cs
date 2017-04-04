@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator DoorSlideOut()
     {
+        yield return new WaitForSeconds(1.5f);
         doorLOut.Play();
         doorROut.Play();
         yield return new WaitForSeconds(0.5f);

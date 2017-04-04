@@ -8,10 +8,17 @@ public class PlayButton : MonoBehaviour {
     public Animation doorL;
     public Animation doorR;
 
+    private AudioSource woodSfx;
+
+    private void Start()
+    {
+        woodSfx = GetComponent<AudioSource>();
+    }
+
     public void Historia()
     {
         StartCoroutine(GoToScene());
-        
+        woodSfx.Play();
     }
 
     private IEnumerator GoToScene()

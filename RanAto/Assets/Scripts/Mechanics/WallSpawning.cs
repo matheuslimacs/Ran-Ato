@@ -15,7 +15,7 @@ public class WallSpawning : MonoBehaviour {
     public float distanceBetweenMin;
     public float distanceBetweenMax;
 
-    public ObjectPooler objPool;
+    public WallPooler objPool;
 
     private void Start()
     {

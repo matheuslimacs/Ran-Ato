@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MovePlayer : MonoBehaviour
     public bool isGoingDown;
 
     public LayerMask groundLayer; // mostra quem é o chão nas layers
+
     private Rigidbody2D myRb; // adiciona ao myRb os componentes de um rigidbody
     private Collider2D myCollider;
     private Animator anim;
@@ -21,48 +23,54 @@ public class MovePlayer : MonoBehaviour
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
     private Camera main;
 
+    public Text debugPulo;
+
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
+
         main = Camera.main;
 	}
 	
-	void FixedUpdate ()
+	void Update ()
     {
+        // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
+        jumpSpeed = myPlayer.playerStats.JumpPower; 
+
         // Aguardando as cortinas abrirem.
         if (myPlayer.bGameStarted)
         {
             MoveForward();
         }
 
-        // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
-        jumpSpeed = myPlayer.playerStats.JumpPower; 
-
+        // Resetando variáveis assim que o jogador pisa no chão.
         if (bNoChao)
         {
-            jmpCounter = 0;
+            jmpCounter = 2;
             myRb.gravityScale = 1f;
             isGoingDown = false;
         }
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        // Controladores do touch
+        if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.tapCount == 1)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Jump();
             }
         }
 
-        // Debugging
+        // Debugging p/ muose
         if (Input.GetMouseButtonDown(0))
         {
             Jump();
         }
+
+        // Debugging p/ pulo duplo
+        debugPulo.text = "Pulo duplo: " + jmpCounter;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -75,12 +83,11 @@ public class MovePlayer : MonoBehaviour
 
     public void Jump()
     {
-        jmpCounter++;
+        jmpCounter--;
 
-        if (jmpCounter < 2)
+        if (jmpCounter > 0)
         {
             anim.SetBool("Jump", true);
-            //Debug.Log("Pulando com força de " + jumpSpeed / 1.5f + "f! Restam " + jmpCounter + " pulos.");
             myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / 1.5f);
         }
     }
