@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    static int character = 1; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+    public static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
     public bool bGameStarted = false;
