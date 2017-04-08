@@ -21,6 +21,7 @@ public class MovePlayer : MonoBehaviour
     private Animator anim;
 
     private GameManager myPlayer; // Variável p/ referência da classe 'Player'.
+    private TutorialManager tutorialScript;
     private Camera main;
 
     public Text debugPulo;
@@ -30,6 +31,7 @@ public class MovePlayer : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();
+        tutorialScript = GameObject.Find("TutorialTrigger01").GetComponent<TutorialManager>();
         anim = GetComponent<Animator>();
 
         main = Camera.main;
@@ -38,32 +40,49 @@ public class MovePlayer : MonoBehaviour
 	void Update ()
     {
         // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
-        jumpSpeed = myPlayer.playerStats.JumpPower; 
+        jumpSpeed = myPlayer.playerStats.JumpPower;
 
         // Aguardando as cortinas abrirem.
-        if (myPlayer.bGameStarted)
+        if (!GameManager.bPause)
         {
-            MoveForward();
+            if (myPlayer.bGameStarted)
+            {
+                MoveForward();
+            }
         }
 
         // Resetando variáveis assim que o jogador pisa no chão.
-        if (bNoChao)
+        if (!GameManager.bPause)
         {
-            jmpCounter = 2;
-            myRb.gravityScale = 1f;
-            isGoingDown = false;
+            if (bNoChao)
+            {
+                jmpCounter = 2;
+                myRb.gravityScale = 1f;
+                isGoingDown = false;
+            }
         }
 
         // Controladores do touch
         if (Input.touchCount > 0)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.GetTouch(0).phase == TouchPhase.Began && TutorialManager.tutorialExibido)
+            {
+                Jump();
+
+                if (!TutorialManager.fezTutorialPulo)
+                {
+                    TutorialManager.fezTutorialPulo = true;
+                    GameManager.bPause = false;
+                    tutorialScript.FezTutorialPulo();
+                }
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Jump();
             }
         }
 
-        // Debugging p/ muose
+        // Debugging p/ mouse
         if (Input.GetMouseButtonDown(0))
         {
             Jump();
@@ -71,6 +90,16 @@ public class MovePlayer : MonoBehaviour
 
         // Debugging p/ pulo duplo
         debugPulo.text = "Pulo duplo: " + jmpCounter;
+
+        // TODO: Se o jogo estiver pausado, pausar animação do personagem.
+        if (GameManager.bPause)
+        {
+            anim.enabled = false;
+        }
+        else
+        {
+            anim.enabled = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

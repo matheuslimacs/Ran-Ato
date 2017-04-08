@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour {
     public static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
+
     public bool bGameStarted = false;
+    public static bool bPause = false;
 
     private GameObject player;
     public GameObject doorL;
