@@ -9,9 +9,11 @@ public class Ninja : MonoBehaviour {
     SpriteRenderer sprtRender;
 
     public RuntimeAnimatorController controller;
-    public GameObject shurikenPrefab;
 
+    public GameObject shurikenPrefab;
     public GameObject shurikenSpawnLocation;
+
+    public static int ninjaAmmo;
 
     private void Start()
     {
@@ -27,7 +29,11 @@ public class Ninja : MonoBehaviour {
     {
         if (GameManager.character == 3)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            RaycastHit2D hit;
+
+            hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+
+            if (hit.collider != null && hit.transform.gameObject.name == "Ability_icon" && ninjaAmmo > 0)
             {
                 Instantiate(shurikenPrefab, shurikenSpawnLocation.transform.position, shurikenSpawnLocation.transform.rotation);
             }

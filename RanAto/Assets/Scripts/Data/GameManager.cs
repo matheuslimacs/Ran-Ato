@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
     public Animation doorLOut;
     public Animation doorROut;
 
+    // TODO: Corrigir alpha do ícone para 50% toda vez que o jogador NÃO possuir especial.
+    public GameObject specialIcon;
+
     private void Awake()
     {
         player = GameObject.Find("Player");

@@ -91,7 +91,6 @@ public class MovePlayer : MonoBehaviour
         // Debugging p/ pulo duplo
         debugPulo.text = "Pulo duplo: " + jmpCounter;
 
-        // TODO: Se o jogo estiver pausado, pausar animação do personagem.
         if (GameManager.bPause)
         {
             anim.enabled = false;

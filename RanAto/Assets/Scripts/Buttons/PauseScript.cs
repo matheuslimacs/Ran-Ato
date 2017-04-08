@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour {
 
-    // TODO: Verificar se o script se aplica a todos os casos.
     public void Pausa()
     {
         if (Time.timeScale == 1)
