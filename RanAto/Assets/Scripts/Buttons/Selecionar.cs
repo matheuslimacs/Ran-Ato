@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class Selecionar : MonoBehaviour {
 
-    // O script abaixo não vai funcionar na versão Mobile.
-    // Preciso que tu olhe como funciona o touch no jogo principal e tente implementar aqui (é simples).
-    public GameObject samurai;
-    public GameObject ninja;
-    public GameObject menina;
-    public int escolha;
+    private Animation doorL;
+    private Animation doorR;
 
-    public void OnMouseDown(GameObject outro)
+    private void Start()
     {
+        doorL = GameObject.Find("doorL").GetComponent<Animation>();
+        doorR = GameObject.Find("doorR").GetComponent<Animation>();
+    }
 
-        if (outro.CompareTag("Samurai"))
-        {
-            escolha = 1;
-        }
+    public void Japonesa()
+    {
+        GameManager.character = 1;
+        doorL.Play("DoorLSlideIn");
+        doorR.Play("DoorRSlideIn");
+    }
 
-        else if (outro.CompareTag("Ninja"))
-        {
-            escolha = 2;
-        }
+    public void Samurai()
+    {
+        GameManager.character = 2;
+        doorL.Play("DoorLSlideIn");
+        doorR.Play("DoorRSlideIn");
+    }
 
-        else if (outro.CompareTag("Menina"))
-        {
-            escolha = 3;
-        }
+    public void Ninja()
+    {
+        GameManager.character = 3;
+        doorL.Play("DoorLSlideIn");
+        doorR.Play("DoorRSlideIn");
     }
 }
