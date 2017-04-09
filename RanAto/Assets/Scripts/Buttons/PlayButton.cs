@@ -15,8 +15,11 @@ public class PlayButton : MonoBehaviour {
 
     private Text buttonText;
 
+    private bool tocou = false;
+
     private void Start()
     {
+        tocou = false;
         woodSfx = GetComponent<AudioSource>();
         scrollFolding = GetComponent<Animator>();
         buttonText = GetComponentInChildren<Text>();
@@ -24,10 +27,14 @@ public class PlayButton : MonoBehaviour {
 
     public void Historia()
     {
-        StartCoroutine(GoToScene());
-        buttonText.text = "";
-        woodSfx.Play();
-        scrollFolding.Play("ScrollFoldingBack");
+        if (!tocou)
+        {
+            tocou = true;
+            StartCoroutine(GoToScene());
+            buttonText.text = "";
+            woodSfx.Play();
+            scrollFolding.Play("ScrollFoldingBack");
+        }
     }
 
     private IEnumerator GoToScene()
