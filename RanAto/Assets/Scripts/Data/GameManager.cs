@@ -10,13 +10,20 @@ public class GameManager : MonoBehaviour {
 
     public bool bGameStarted = false;
     public static bool bPause = false;
+    public static bool bPlayerDead = false;
 
     private GameObject player;
     public GameObject doorL;
     public GameObject doorR;
+    public GameObject gameover_sprite;
+    public GameObject gameover_bg;
 
     public Animation doorLOut;
     public Animation doorROut;
+    private Animation gameOverBGAnim;
+
+    public GameObject menu;
+    public GameObject playAgain;
 
     // TODO: Corrigir alpha do ícone para 50% toda vez que o jogador NÃO possuir especial.
     public GameObject specialIcon;
@@ -24,6 +31,7 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         player = GameObject.Find("Player");
+        gameOverBGAnim = gameover_bg.GetComponent<Animation>();
     }
 
     private void Start()
@@ -98,5 +106,19 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<Woman>().enabled = false;
         player.GetComponent<Samurai>().enabled = false;
         player.GetComponent<Ninja>().enabled = true;
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(LoadGameOverUI());
+    }
+
+    public IEnumerator LoadGameOverUI()
+    {
+        yield return new WaitForSeconds(2f);
+        gameOverBGAnim.Play("Tutorial_BGFadeIn");
+        gameover_sprite.SetActive(true);
+        menu.SetActive(true);
+        playAgain.SetActive(true);
     }
 }

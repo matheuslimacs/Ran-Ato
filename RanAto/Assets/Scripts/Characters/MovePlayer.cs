@@ -24,8 +24,6 @@ public class MovePlayer : MonoBehaviour
     private TutorialManager tutorialScript;
     private Camera main;
 
-    public Text debugPulo;
-
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
@@ -83,13 +81,21 @@ public class MovePlayer : MonoBehaviour
         }
 
         // Debugging p/ mouse
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && TutorialManager.tutorialExibido)
+        {
+            Jump();
+
+            if (!TutorialManager.fezTutorialPulo)
+            {
+                TutorialManager.fezTutorialPulo = true;
+                GameManager.bPause = false;
+                tutorialScript.FezTutorialPulo();
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             Jump();
         }
-
-        // Debugging p/ pulo duplo
-        debugPulo.text = "Pulo duplo: " + jmpCounter;
 
         if (GameManager.bPause)
         {

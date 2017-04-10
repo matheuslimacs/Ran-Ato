@@ -4,29 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MorteScript : MonoBehaviour {
-    public int vivo;
 
-	// Use this for initialization
-	void Start () {
-        vivo = 5;
-    }
-	
-	// Update is called once per frame
-	void Update () {
+    public ParticleSystem deathParticle;
+    private GameManager GMSCript;
 
-        
-	}
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Inimigos"))
-        {
-            vivo--;
-        }
+        GMSCript = GameObject.Find("_GM").GetComponent<GameManager>();
+    }
 
-        if (vivo <= 0)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Caixa"))
         {
-            // TODO: Carregar tela de game over
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+            GameManager.bPlayerDead = true;
+            GMSCript.GameOver();
+            Destroy(gameObject);
         }
     }
 }
