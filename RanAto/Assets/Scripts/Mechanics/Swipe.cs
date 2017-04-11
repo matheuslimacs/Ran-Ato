@@ -77,6 +77,7 @@ public class Swipe : MonoBehaviour {
             {
                 Debug.Log("P/ baixo");
                 player.GetComponent<MovePlayer>().isGoingDown = true;
+                player.GetComponent<Animator>().SetBool("isGoingDown", true);
                 player.GetComponent<MovePlayer>().GoDown();
             }
         }

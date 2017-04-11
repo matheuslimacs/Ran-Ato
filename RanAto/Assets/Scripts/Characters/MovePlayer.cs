@@ -57,6 +57,7 @@ public class MovePlayer : MonoBehaviour
                 jmpCounter = 2;
                 myRb.gravityScale = 1f;
                 isGoingDown = false;
+                anim.SetBool("isGoingDown", false);
             }
         }
 
