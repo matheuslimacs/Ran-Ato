@@ -23,5 +23,11 @@ public class ShurikenScript : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        else if (collision.gameObject.tag == ("Inimigos"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

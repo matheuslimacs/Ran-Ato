@@ -8,37 +8,51 @@ public class ColetaDeItens : MonoBehaviour {
 	private int moedas;
     private int scrolls;
 
+    public static bool hasUltimate = false;
+
     public GameObject contadorMoeda;
     public GameObject contadorScroll;
 
     private Text textoMoeda;
     private Text textoScroll;
 
+    public AudioClip itemSound;
+    public AudioSource gmAudio;
+
     private void Start()
     {
         textoMoeda = contadorMoeda.GetComponent<Text>();
         textoScroll = contadorScroll.GetComponent<Text>();
+        gmAudio.clip = itemSound;
     }
 
-    //Verifica a Colisao se o jogador colidiu com algum item e seleciona o efeito.
     void OnTriggerEnter2D(Collider2D coll) {
 		string tag = coll.gameObject.tag;
-		//Faz uma selecao de qual item foi coletado e chama a funcao correspondente.
+        
 		switch (tag)
         {
 		case "Moeda":
+            gmAudio.Play();
 			moedas++;
             Destroy(coll.gameObject);
             textoMoeda.text = moedas.ToString();
             break;
         case "Pergaminho":
-            scrolls++;
+                gmAudio.Play();
+                scrolls++;
             Destroy(coll.gameObject);
             textoScroll.text = scrolls.ToString();
             break;
-		}
-		//Esperando efeitos dos itens para colocar os codigos.
-		//Esperando Estudo de dados persistentes para corrigir o codigo de maneira melhor.
+        case "Ultimate":
+            if (!hasUltimate)
+            {
+                gmAudio.Play();
+                hasUltimate = true;
+            }
 
+            Destroy(coll.gameObject);
+
+            break;
+		}
 	}
 }

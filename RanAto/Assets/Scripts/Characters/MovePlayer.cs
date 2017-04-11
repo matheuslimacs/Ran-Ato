@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -61,28 +61,8 @@ public class MovePlayer : MonoBehaviour
             }
         }
 
-        // Controladores do touch
-        if (Input.touchCount > 0)
-        {
-            if (Input.GetTouch(0).phase == TouchPhase.Began && TutorialManager.tutorialExibido)
-            {
-                Jump();
-
-                if (!TutorialManager.fezTutorialPulo)
-                {
-                    TutorialManager.fezTutorialPulo = true;
-                    GameManager.bPause = false;
-                    tutorialScript.FezTutorialPulo();
-                }
-            }
-            else if (Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                Jump();
-            }
-        }
-
         // Debugging p/ mouse
-        if (Input.GetMouseButtonDown(0) && TutorialManager.tutorialExibido)
+        if (Input.GetMouseButtonDown(0) && TutorialManager.tutorialPuloExibido)
         {
             Jump();
 
@@ -90,7 +70,7 @@ public class MovePlayer : MonoBehaviour
             {
                 TutorialManager.fezTutorialPulo = true;
                 GameManager.bPause = false;
-                tutorialScript.FezTutorialPulo();
+                tutorialScript.FezTutorial();
             }
         }
         else if (Input.GetMouseButtonDown(0))
@@ -118,13 +98,34 @@ public class MovePlayer : MonoBehaviour
 
     public void Jump()
     {
-        jmpCounter--;
-
-        if (jmpCounter > 0)
+        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
-            anim.SetBool("Jump", true);
-            myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / 1.5f);
-        }
+            jmpCounter--;
+
+            if (TutorialManager.tutorialPuloExibido)
+            {
+                if (jmpCounter > 0)
+                {
+                    anim.SetBool("Jump", true);
+                    myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / 1.5f);
+                }
+
+                if (!TutorialManager.fezTutorialPulo)
+                {
+                    TutorialManager.fezTutorialPulo = true;
+                    GameManager.bPause = false;
+                    tutorialScript.FezTutorial();
+                }
+            }
+            else
+            {
+                if (jmpCounter > 0)
+                {
+                    anim.SetBool("Jump", true);
+                    myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / 1.5f);
+                }
+            }
+        }        
     }
 
     public void GoDown()

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public static int character = 2; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+    public static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
 
@@ -25,11 +26,42 @@ public class GameManager : MonoBehaviour {
     public GameObject menu;
     public GameObject playAgain;
 
-    // TODO: Corrigir alpha do ícone para 50% toda vez que o jogador NÃO possuir especial.
-    public GameObject specialIcon;
+    public Sprite[] iconesDoHud;
+    public Sprite[] iconesDoJogo;
+    public GameObject[] specialItems;
+
+    private Image specialIcon;
 
     private void Awake()
     {
+        specialIcon = GameObject.Find("ability_icon").GetComponent<Image>();
+        specialItems = GameObject.FindGameObjectsWithTag("Ultimate");
+
+        switch (character)
+        {
+            case 1:
+                specialIcon.sprite = iconesDoHud[0];
+                foreach (GameObject sprite in specialItems)
+                {
+                    sprite.GetComponent<SpriteRenderer>().sprite = iconesDoJogo[0];
+                }
+                break;
+            case 2:
+                specialIcon.sprite = iconesDoHud[1];
+                foreach (GameObject sprite in specialItems)
+                {
+                    sprite.GetComponent<SpriteRenderer>().sprite = iconesDoJogo[1];
+                }
+                break;
+            case 3:
+                specialIcon.sprite = iconesDoHud[2];
+                foreach (GameObject sprite in specialItems)
+                {
+                    sprite.GetComponent<SpriteRenderer>().sprite = iconesDoJogo[2];
+                }
+                break;
+        }
+
         player = GameObject.Find("Player");
         gameOverBGAnim = gameover_bg.GetComponent<Animation>();
     }
@@ -58,10 +90,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Apenas 'travando' a tela na orientação Retrato.
     private void Update()
     {
         Screen.orientation = ScreenOrientation.Portrait;
+
+        if (ColetaDeItens.hasUltimate)
+        {
+            specialIcon.color = new Color(255, 255, 255, 1f);
+        }
+        else
+        {
+            specialIcon.color = new Color(255, 255, 255, 0.5f);
+        }
     }
 
     private void GameStart()
