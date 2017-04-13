@@ -11,16 +11,16 @@ public class SpecialAbilityScript : MonoBehaviour {
     private MovePlayer player;
     private TutorialManager tutorialScript;
 
-    public AudioSource gmAudio;
+    private AudioSource abilityAudioSource;
 
     public AudioClip meleeKatana;
-    public AudioClip jumping;
     public AudioClip shuriken;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<MovePlayer>();
         tutorialScript = GameObject.Find("TutorialTrigger02").GetComponent<TutorialManager>();
+        abilityAudioSource = GetComponent<AudioSource>();
     }
 
     public void Habilidade()
@@ -41,6 +41,8 @@ public class SpecialAbilityScript : MonoBehaviour {
                 case 2:
                     if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
                     {
+                        abilityAudioSource.clip = meleeKatana;
+
                         if (ColetaDeItens.hasUltimate)
                         {
                             StartCoroutine(Katanada());
@@ -49,8 +51,6 @@ public class SpecialAbilityScript : MonoBehaviour {
                     }
                     else
                     {
-                        gmAudio.clip = jumping;
-                        gmAudio.Play();
                         player.Jump();
                     }
 
@@ -66,8 +66,6 @@ public class SpecialAbilityScript : MonoBehaviour {
                     }
                     else
                     {
-                        gmAudio.clip = jumping;
-                        gmAudio.Play();
                         player.Jump();
                     }
 
@@ -79,8 +77,7 @@ public class SpecialAbilityScript : MonoBehaviour {
     public IEnumerator Katanada()
     {
         player.GetComponent<Animator>().SetBool("Ultimate", true);
-        gmAudio.clip = meleeKatana;
-        gmAudio.Play();
+        abilityAudioSource.Play();
         yield return new WaitForSeconds(0.5f);
         player.GetComponent<Animator>().SetBool("Ultimate", false);
     }

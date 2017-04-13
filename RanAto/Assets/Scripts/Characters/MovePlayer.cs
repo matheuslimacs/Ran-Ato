@@ -24,6 +24,9 @@ public class MovePlayer : MonoBehaviour
     private TutorialManager tutorialScript;
     private Camera main;
 
+    private AudioSource playerAudioSource;
+    public AudioClip jump;
+
     void Start ()
     {
         myRb = GetComponent<Rigidbody2D>();
@@ -31,8 +34,8 @@ public class MovePlayer : MonoBehaviour
         myPlayer = GameObject.Find("_GM").GetComponent<GameManager>();
         tutorialScript = GameObject.Find("TutorialTrigger01").GetComponent<TutorialManager>();
         anim = GetComponent<Animator>();
-
         main = Camera.main;
+        playerAudioSource = GetComponent<AudioSource>();
 	}
 	
 	void Update ()
@@ -98,6 +101,9 @@ public class MovePlayer : MonoBehaviour
 
     public void Jump()
     {
+        playerAudioSource.clip = jump;
+        playerAudioSource.Play();
+
         if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             jmpCounter--;
