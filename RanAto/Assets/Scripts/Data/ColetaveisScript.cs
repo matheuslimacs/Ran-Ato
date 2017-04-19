@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColetaveisScript : MonoBehaviour {
 
-    // TODO: Conferir se o script funciona
     int coletavel;
 
     public void OnTriggerEnter(Collider other)

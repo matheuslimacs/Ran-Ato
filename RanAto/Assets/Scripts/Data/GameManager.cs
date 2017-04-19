@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public static int character = 3; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+    public static int character = 2; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
 
@@ -30,12 +31,56 @@ public class GameManager : MonoBehaviour {
     public Sprite[] iconesDoJogo;
     public GameObject[] specialItems;
 
-    private Image specialIcon;
+    public static Image specialIcon;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
         specialIcon = GameObject.Find("ability_icon").GetComponent<Image>();
         specialItems = GameObject.FindGameObjectsWithTag("Ultimate");
+        gameOverBGAnim = gameover_bg.GetComponent<Animation>();
+
+        ChangeSpecialAbilityIcon();
+    }
+
+    private void Start()
+    {
+        GameStart();
+        ChooseCharacter();
+    }
+
+    private void GameStart()
+    {
+        StartCoroutine(DoorSlideOut());
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(LoadGameOverUI());
+    }
+
+    void ChooseCharacter()
+    {
+        switch (character)
+        {
+            case 1: // Mulher
+                EnableWomanScript();
+                DefinePlayer(115, 8f, 0);
+                break;
+            case 2: // Samurai
+                EnableSamuraiScript();
+                DefinePlayer(150, 10f, 3);
+                break;
+            case 3: // Ninja
+                EnableNinjaScript();
+                DefinePlayer(130, 12f, 5);
+                break;
+        }
+    }
+
+    void ChangeSpecialAbilityIcon()
+    {
+        specialIcon.color = new Color(255, 255, 255, 0.5f);
 
         switch (character)
         {
@@ -61,63 +106,6 @@ public class GameManager : MonoBehaviour {
                 }
                 break;
         }
-
-        player = GameObject.Find("Player");
-        gameOverBGAnim = gameover_bg.GetComponent<Animation>();
-    }
-
-    private void Start()
-    {
-        GameStart();
-
-        switch (character)
-        {
-            case 1: // Mulher
-                EnableWomanScript();
-                DefinePlayer(115, 8f, 0);
-                Debug.Log("Personagem criado: Mulher - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
-                break;
-            case 2: // Samurai
-                EnableSamuraiScript();
-                DefinePlayer(150, 10f, 3);
-                Debug.Log("Personagem criado: Samurai - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
-                break;
-            case 3: // Ninja
-                EnableNinjaScript();
-                DefinePlayer(130, 12f, 5);
-                Debug.Log("Personagem criado: Ninja - Vida: " + playerStats.Health + " - Jump Power: " + playerStats.JumpPower);
-                break;
-        }
-    }
-
-    private void Update()
-    {
-        Screen.orientation = ScreenOrientation.Portrait;
-
-        if (ColetaDeItens.hasUltimate)
-        {
-            specialIcon.color = new Color(255, 255, 255, 1f);
-        }
-        else
-        {
-            specialIcon.color = new Color(255, 255, 255, 0.5f);
-        }
-    }
-
-    private void GameStart()
-    {
-        StartCoroutine(DoorSlideOut());
-    }
-
-    private IEnumerator DoorSlideOut()
-    {
-        yield return new WaitForSeconds(1.5f);
-        doorLOut.Play();
-        doorROut.Play();
-        yield return new WaitForSeconds(0.5f);
-        bGameStarted = true;
-        doorL.gameObject.SetActive(false);
-        doorR.gameObject.SetActive(false);
     }
 
     void DefinePlayer(int hp, float jmpPower, int am)
@@ -148,9 +136,16 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<Ninja>().enabled = true;
     }
 
-    public void GameOver()
+
+    private IEnumerator DoorSlideOut()
     {
-        StartCoroutine(LoadGameOverUI());
+        yield return new WaitForSeconds(0.5f);
+        doorLOut.Play();
+        doorROut.Play();
+        yield return new WaitForSeconds(0.5f);
+        bGameStarted = true;
+        doorL.gameObject.SetActive(false);
+        doorR.gameObject.SetActive(false);
     }
 
     public IEnumerator LoadGameOverUI()

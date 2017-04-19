@@ -31,28 +31,28 @@ public class ColetaDeItens : MonoBehaviour {
         
 		switch (tag)
         {
-		case "Moeda":
-            gmAudio.Play();
-			moedas++;
-            Destroy(coll.gameObject);
-            textoMoeda.text = moedas.ToString();
-            break;
-        case "Pergaminho":
+	        case "Moeda":
+                gmAudio.Play();
+		        moedas++;
+                Destroy(coll.gameObject);
+                textoMoeda.text = moedas.ToString();
+                break;
+            case "Pergaminho":
                 gmAudio.Play();
                 scrolls++;
-            Destroy(coll.gameObject);
-            textoScroll.text = scrolls.ToString();
-            break;
-        case "Ultimate":
-            if (!hasUltimate)
-            {
-                gmAudio.Play();
-                hasUltimate = true;
-            }
+                Destroy(coll.gameObject);
+                textoScroll.text = scrolls.ToString();
+                break;
+            case "Ultimate":
+                Destroy(coll.gameObject);
 
-            Destroy(coll.gameObject);
-
-            break;
+                if (!hasUltimate)
+                {
+                    GameManager.specialIcon.color = new Color(255, 255, 255, 1f);
+                    gmAudio.Play();
+                    hasUltimate = true;
+                }
+                break;
 		}
 	}
 }

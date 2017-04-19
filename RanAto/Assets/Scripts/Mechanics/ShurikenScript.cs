@@ -19,12 +19,12 @@ public class ShurikenScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == ("ShurikenDestroy"))
+        if (collision.gameObject.tag == "ShurikenDestroy")
         {
             Destroy(gameObject);
         }
 
-        else if (collision.gameObject.tag == ("Inimigos"))
+        else if (collision.gameObject.tag == "Inimigos")
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);

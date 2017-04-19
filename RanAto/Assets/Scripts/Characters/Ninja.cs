@@ -18,12 +18,6 @@ public class Ninja : MonoBehaviour {
         anim = player.GetComponent<Animator>();
         anim.runtimeAnimatorController = controller;
         sprtRender = GetComponent<SpriteRenderer>();
-        Debug.Log("It's me, ninja!");
         sprtRender.flipX = true;
-    }
-
-    private void Update()
-    {
-
     }
 }

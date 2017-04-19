@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fading : MonoBehaviour {
 
@@ -27,9 +28,14 @@ public class Fading : MonoBehaviour {
         return (fadeSpeed);
     }
 
-    private void OnLevelWasLoaded(int level)
+    private void LoadedLevel(Scene level, LoadSceneMode mode)
     {
         BeginFade(-1);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += LoadedLevel;
     }
 
 }

@@ -13,6 +13,5 @@ public class Woman : MonoBehaviour {
         player = GameObject.Find("Player");
         anim = player.GetComponent<Animator>();
         anim.runtimeAnimatorController = controller;
-        Debug.Log("It's me, woman!");
     }
 }

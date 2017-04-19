@@ -25,6 +25,8 @@ public class SpecialAbilityScript : MonoBehaviour {
 
     public void Habilidade()
     {
+        GameManager.specialIcon.color = new Color(255, 255, 255, 0.5f);
+
         if (!TutorialManager.fezTutorialAtaque)
         {
             TutorialManager.fezTutorialAtaque = true;

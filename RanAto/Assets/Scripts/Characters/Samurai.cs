@@ -17,6 +17,5 @@ public class Samurai : MonoBehaviour {
         sprtRender = GetComponent<SpriteRenderer>();
         sprtRender.flipX = true;
         anim.runtimeAnimatorController = controller;
-        Debug.Log("It's me, samurai!");
     }
 }
