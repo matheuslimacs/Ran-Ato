@@ -19,7 +19,7 @@ public class ColetaDeItens : MonoBehaviour {
     public AudioClip itemSound;
     public AudioSource gmAudio;
 
-    public static List<GameObject> disabledItems;
+    public static List<GameObject> disabledItems = new List<GameObject>();
 
     private void Start()
     {

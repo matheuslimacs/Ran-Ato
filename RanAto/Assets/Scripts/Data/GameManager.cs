@@ -150,10 +150,11 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator LoadGameOverUI()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         gameOverBGAnim.Play("Tutorial_BGFadeIn");
         gameover_sprite.SetActive(true);
         menu.SetActive(true);
+        playAgain.GetComponent<Image>().color = new Color(255, 255, 255, 1f);
         playAgain.SetActive(true);
     }
 }

@@ -35,6 +35,7 @@ public class MorteScript : MonoBehaviour {
             GMSCript.GameOver();
             gameObject.SetActive(false);
             ColetaDeItens.disabledItems.Add(gameObject);
+            GameManager.bPause = true;
         }
     }
 }
