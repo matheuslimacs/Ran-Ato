@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class ColetaDeItens : MonoBehaviour {
 	
     //Quantidade de moedas
-	private int moedas;
-    private int scrolls;
+	public static int moedas;
+    public static int scrolls;
 
     public static bool hasUltimate = false;
 
     public GameObject contadorMoeda;
     public GameObject contadorScroll;
 
-    private Text textoMoeda;
-    private Text textoScroll;
+    public static Text textoMoeda;
+    public static Text textoScroll;
 
     public AudioClip itemSound;
     public AudioSource gmAudio;
+
+    public static List<GameObject> disabledItems;
 
     private void Start()
     {
@@ -34,17 +36,20 @@ public class ColetaDeItens : MonoBehaviour {
 	        case "Moeda":
                 gmAudio.Play();
 		        moedas++;
-                Destroy(coll.gameObject);
+                coll.gameObject.SetActive(false);
+                disabledItems.Add(coll.gameObject);
                 textoMoeda.text = moedas.ToString();
                 break;
             case "Pergaminho":
                 gmAudio.Play();
                 scrolls++;
-                Destroy(coll.gameObject);
+                coll.gameObject.SetActive(false);
+                disabledItems.Add(coll.gameObject);
                 textoScroll.text = scrolls.ToString();
                 break;
             case "Ultimate":
-                Destroy(coll.gameObject);
+                coll.gameObject.SetActive(false);
+                disabledItems.Add(coll.gameObject);
 
                 if (!hasUltimate)
                 {

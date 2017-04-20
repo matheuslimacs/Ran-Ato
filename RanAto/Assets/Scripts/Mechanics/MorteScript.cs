@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MorteScript : MonoBehaviour {
 
-    public ParticleSystem deathParticle;
     private GameManager GMSCript;
 
     private MovePlayer player;
@@ -26,15 +25,16 @@ public class MorteScript : MonoBehaviour {
         {
             gmAudio.clip = dummy_death;
             gmAudio.Play();
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            ColetaDeItens.disabledItems.Add(other.gameObject);
         }
 
         else if (other.collider.CompareTag("Caixa") || other.collider.CompareTag("Inimigos") && !player.GetComponent<Animator>().GetBool("Ultimate"))
         {
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
             GameManager.bPlayerDead = true;
             GMSCript.GameOver();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            ColetaDeItens.disabledItems.Add(gameObject);
         }
     }
 }
