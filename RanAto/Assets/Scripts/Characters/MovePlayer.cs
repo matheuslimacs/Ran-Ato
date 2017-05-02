@@ -38,7 +38,7 @@ public class MovePlayer : MonoBehaviour
         playerAudioSource = GetComponent<AudioSource>();
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
         // Setando o pulo para o valor atual do pulo, que varia caso o personagem seja a mulher, samurai ou ninja.
         jumpSpeed = myPlayer.playerStats.JumpPower;
@@ -58,27 +58,10 @@ public class MovePlayer : MonoBehaviour
             if (bNoChao)
             {
                 jmpCounter = 2;
-                myRb.gravityScale = 1f;
+                myRb.gravityScale = 5f;
                 isGoingDown = false;
                 anim.SetBool("isGoingDown", false);
             }
-        }
-
-        // Debugging p/ mouse
-        if (Input.GetMouseButtonDown(0) && TutorialManager.tutorialPuloExibido)
-        {
-            Jump();
-
-            if (!TutorialManager.fezTutorialPulo)
-            {
-                TutorialManager.fezTutorialPulo = true;
-                GameManager.bPause = false;
-                tutorialScript.FezTutorial();
-            }
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            Jump();
         }
 
         if (GameManager.bPause)
@@ -96,6 +79,7 @@ public class MovePlayer : MonoBehaviour
         if (collision.gameObject.tag == ("Chao"))
         {
             anim.SetBool("Jump", false);
+            bNoChao = true;
         }
     }
 
@@ -104,7 +88,7 @@ public class MovePlayer : MonoBehaviour
         playerAudioSource.clip = jump;
         playerAudioSource.Play();
 
-        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             jmpCounter--;
 

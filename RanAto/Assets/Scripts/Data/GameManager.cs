@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public static int character = 2; // 1 - Mulher, 2 - Samurai, 3 - Ninja
+    public static int character = 1; // 1 - Mulher, 2 - Samurai, 3 - Ninja
 
     [HideInInspector]
     public PlayerStats playerStats = new PlayerStats(100, 8f, 3);
@@ -65,15 +65,15 @@ public class GameManager : MonoBehaviour {
         {
             case 1: // Mulher
                 EnableWomanScript();
-                DefinePlayer(115, 8f, 0);
+                DefinePlayer(115, 20f, 0);
                 break;
             case 2: // Samurai
                 EnableSamuraiScript();
-                DefinePlayer(150, 10f, 3);
+                DefinePlayer(150, 25f, 3);
                 break;
             case 3: // Ninja
                 EnableNinjaScript();
-                DefinePlayer(130, 12f, 5);
+                DefinePlayer(130, 28f, 5);
                 break;
         }
     }
@@ -139,10 +139,12 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator DoorSlideOut()
     {
+        bPause = true;
         yield return new WaitForSeconds(0.5f);
         doorLOut.Play();
         doorROut.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.35f);
+        bPause = false;
         bGameStarted = true;
         doorL.gameObject.SetActive(false);
         doorR.gameObject.SetActive(false);

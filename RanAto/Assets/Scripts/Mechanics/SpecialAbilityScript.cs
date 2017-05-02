@@ -27,7 +27,7 @@ public class SpecialAbilityScript : MonoBehaviour {
     {
         GameManager.specialIcon.color = new Color(255, 255, 255, 0.5f);
 
-        if (!TutorialManager.fezTutorialAtaque)
+        if (!TutorialManager.fezTutorialAtaque && GameManager.character != 1)
         {
             TutorialManager.fezTutorialAtaque = true;
             GameManager.bPause = false;
@@ -51,11 +51,6 @@ public class SpecialAbilityScript : MonoBehaviour {
                             ColetaDeItens.hasUltimate = false;
                         }
                     }
-                    else
-                    {
-                        player.Jump();
-                    }
-
                     break;
                 case 3:
                     if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
@@ -66,11 +61,6 @@ public class SpecialAbilityScript : MonoBehaviour {
                             ColetaDeItens.hasUltimate = false;
                         }
                     }
-                    else
-                    {
-                        player.Jump();
-                    }
-
                     break;
             }
         }        

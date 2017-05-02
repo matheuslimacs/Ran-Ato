@@ -21,7 +21,7 @@ public class GameOverButtons : MonoBehaviour {
 
     private void Start()
     {
-        mainCam = Camera.main;
+        mainCam = Camera.main;        
     }
 
     public void IrAoMenu()
@@ -31,7 +31,7 @@ public class GameOverButtons : MonoBehaviour {
 
     public void JogarNovamente()
     {
-        StartCoroutine(SlideDoors());
+        PlayGame();
         RepositionPlayerAndCamera();
         ActivateItems();
         ResetUI();
@@ -41,7 +41,10 @@ public class GameOverButtons : MonoBehaviour {
     {
         foreach (GameObject item in ColetaDeItens.disabledItems)
         {
-            item.SetActive(true);
+            if (item)
+            {
+                item.SetActive(true);
+            }           
         }
 
         ColetaDeItens.disabledItems.Clear();
@@ -49,13 +52,13 @@ public class GameOverButtons : MonoBehaviour {
 
     void ResetUI()
     {
+        gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 0f);
         ColetaDeItens.moedas = 0;
         ColetaDeItens.scrolls = 0;
         ColetaDeItens.textoMoeda.text = ColetaDeItens.moedas.ToString();
         ColetaDeItens.textoScroll.text = ColetaDeItens.scrolls.ToString();
         ColetaDeItens.hasUltimate = false;
-        gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 0f);
-        bg_tutorial.SetActive(false);
+        bg_tutorial.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0f);
         menu_button.SetActive(false);
         gameover_sprite.SetActive(false);
 
@@ -68,18 +71,9 @@ public class GameOverButtons : MonoBehaviour {
         mainCam.transform.position = camStartPos.position;
     }
 
-    public IEnumerator SlideDoors()
+    public void PlayGame()
     {
-        doorL.gameObject.SetActive(true);
-        doorR.gameObject.SetActive(true);
-        doorL.Play("DoorLSlideIn");
-        doorR.Play("DoorRSlideIn");
-        yield return new WaitForSeconds(1.0f);
-        doorL.Play("DoorLSlideOut");
-        doorR.Play("DoorRSlideOut");        
         GameManager.bPause = false;
         gameObject.SetActive(false);
-        doorL.gameObject.SetActive(false);
-        doorR.gameObject.SetActive(false);
     }
 }

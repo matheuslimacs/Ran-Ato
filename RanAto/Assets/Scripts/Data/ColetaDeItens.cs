@@ -34,6 +34,7 @@ public class ColetaDeItens : MonoBehaviour {
 		switch (tag)
         {
 	        case "Moeda":
+                gmAudio.clip = itemSound;
                 gmAudio.Play();
 		        moedas++;
                 coll.gameObject.SetActive(false);
@@ -41,6 +42,7 @@ public class ColetaDeItens : MonoBehaviour {
                 textoMoeda.text = moedas.ToString();
                 break;
             case "Pergaminho":
+                gmAudio.clip = itemSound;
                 gmAudio.Play();
                 scrolls++;
                 coll.gameObject.SetActive(false);
@@ -53,6 +55,7 @@ public class ColetaDeItens : MonoBehaviour {
 
                 if (!hasUltimate)
                 {
+                    gmAudio.clip = itemSound;
                     GameManager.specialIcon.color = new Color(255, 255, 255, 1f);
                     gmAudio.Play();
                     hasUltimate = true;

@@ -26,7 +26,11 @@ public class TutorialManager : MonoBehaviour {
 
         if (GameManager.character == 1)
         {
-            GameObject.Find("TutorialTrigger02").SetActive(false);
+            if (GameObject.Find("TutorialTrigger02"))
+            {
+                GameObject.Find("TutorialTrigger02").SetActive(false);
+            }
+
             desativarInimigos = GameObject.FindGameObjectsWithTag("Inimigos");
 
             foreach (GameObject inimigo in desativarInimigos)
@@ -46,7 +50,7 @@ public class TutorialManager : MonoBehaviour {
             tutorialPuloExibido = true;
         }
 
-        if (collision.gameObject.tag == ("Player") && !fezTutorialAtaque && gameObject.name == "TutorialTrigger02")
+        if (collision.gameObject.tag == ("Player") && !fezTutorialAtaque && gameObject.name == "TutorialTrigger02" && GameManager.character != 1)
         {
             GameManager.bPause = true;
             tutorial_sprite.GetComponent<SpriteRenderer>().sprite = ataque;

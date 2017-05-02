@@ -32,7 +32,7 @@ public class PlayButton : MonoBehaviour {
             tocou = true;
             StartCoroutine(GoToScene());
             buttonText.text = "";
-            woodSfx.Play();
+            woodSfx.Play();            
             scrollFolding.Play("ScrollFoldingBack");
         }
     }
